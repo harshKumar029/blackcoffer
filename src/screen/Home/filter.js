@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import Barchart from '../../component/Bar/Barchart';
+import PieChart from '../../component/Bar/PieChart';
+import Linechart from '../../component/Bar/LineChart';
 
 function Filter() {
+  const [bar, setbar] = useState([])
   const [data, setChartData] = useState([]);
   const [filters, setFilters] = useState({
     end_year: '',
@@ -14,35 +18,23 @@ function Filter() {
     city: ''
   });
 
-  const getUserInput = (promptMessage) => {
-    return prompt(promptMessage);
-  };
-
   const loadData = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/statistics", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({/* your data here */}),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+    let response = await fetch("http://localhost:5000/api/statistics", {
+      method: "post",
+      header: {
+        'content-Type': 'application/json'
       }
 
-      response = await response.json();
-      console.log("datacondsgerwgrwg",response[0])
-      setChartData(response[0]);
-    } catch (error) {
-      // console.error("Error fetching data:",error);
-    }
-  };
+    });
+
+    response = await response.json();
+    console.log("datacondsgerwgrwg", response[0])
+    setChartData(response[0]);
+  }
 
   useEffect(() => {
-    loadData();
-  }, []);
+    loadData()
+  }, [])
 
   const applyFilters = (item) => {
     return (
@@ -58,14 +50,16 @@ function Filter() {
     );
   };
 
-  const handleFilterChange = (filterType) => {
-    // const userInput = getUserInput(`Enter ${filterType} filter:`);
-    // setFilters({ ...filters, [filterType]: userInput });
-  };
- 
 
+  // const filteredData = data.filter(applyFilters);
+  // console.log("filterkiyadata", filteredData)
+  // filteredData !==[] ?setbar(filteredData) : setbar(filteredData);
+  // setbar(filteredData);
   const filteredData = data.filter(applyFilters);
-  console.log("filterkiyadata",filteredData)
+console.log("filterkiyadata", filteredData);
+// console.log("hiiiiiededi",setFilters)
+
+
 
   return (
     <div className="App">
@@ -83,17 +77,25 @@ function Filter() {
           </div>
         ))}
       </div>
-      {/* Button to apply filters */}
-      <button onClick={() => handleFilterChange('end_year')}>Apply Filters</button>
 
-      {/* Display filtered data */}
+      {/* Display filtered data 
       <div>
         <h2>Filtered Data:</h2>
         {filteredData.map((item) => (
-          <div key={item.id}>{item.topic/* Render your filtered data here */}</div>
+          <div  key={item.id}>
+          <div>{item.topic}</div>
+          </div>
         ))}
       </div>
+    */}
+      <Linechart data={filteredData.length > 0 ? filteredData : data}/>
+      <Barchart data={filteredData.length > 0 ? filteredData : data} />
+      <PieChart data={filteredData.length > 0 ? filteredData : data}/>
+
+
+      {/* <Barchart data={propdata} /> */}
     </div>
+    
   );
 }
 

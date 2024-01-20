@@ -2,6 +2,8 @@ import React,{useEffect,useState} from 'react'
 // import BarChart from '../../component/Bar/b3';
 // import PieChart from '../../component/Pie/pie';
 import Filter from './filter';
+import Barchart from '../../component/Bar/Barchart';
+
 
 
 const Home = () => {
@@ -34,14 +36,10 @@ const Home = () => {
         loadData();
     }, [])
 
-    const ata = {
-        intensity: 9,
-        likelihood: 3,
-        relevance: 3
-      };
-      const pieChartData = [30, 20, 50];
+
   return (
     <>
+    {/* <div><Barchart/></div> */}
     <div><Filter/></div>
     {/* <div><PieChart data={pieChartData}/></div> */}
     {/* <div><BarChart data={chartitem}/></div> */}
