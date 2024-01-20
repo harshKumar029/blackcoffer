@@ -2,9 +2,9 @@ import React from 'react';
 import { Pie } from 'react-chartjs-2';
 
 const PieChart = ({ data }) => {
-  // Filter out items with undefined or null values for better visualization
+  // use to Filter out null values 
   const filteredData = data.filter((item) =>  item.topic !== '' && item.intensity !== '');
-  // Preprocess the data to calculate total intensity for each unique topic
+  // it is use to calculate total intensity of unique topic
   const Data = filteredData.reduce((accumulator, currentItem) => {
     const existingItem = accumulator.find((item) => item.topic === currentItem.topic);
 
@@ -16,8 +16,6 @@ const PieChart = ({ data }) => {
 
     return accumulator;
   }, []);
-// console.log("vsdvdvdfvaeva",...data)
-    // Function to generate random colors based on intensity
     const generateRandomColor = () => {
         return `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.6)`;
       };
@@ -30,9 +28,9 @@ const PieChart = ({ data }) => {
     //     let count = 0;
     
     //     data.forEach((item) => {
-    //       if (item.sector  === '') {
+    //       if (item.topic  === '') {
     //         count++;
-    //         console.log(item)
+    //         // console.log(item)
     //       }
     //     });
     
@@ -54,8 +52,27 @@ const PieChart = ({ data }) => {
       },
     ],
   };
+    const chartOptions = {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Leading Industries',
+          font: {
+            size: 16,
+            weight: 'bold',
+          },
+        },
+      },
+    
+      responsive: true, 
+      maintainAspectRatio: false,
+    };
 
-  return <Pie data={chartData} />;
+  return (
+    <div className='allchart Piechart'>
+      <Pie  data={chartData} options={chartOptions} />
+    </div>
+  )
 };
 
 export default PieChart;

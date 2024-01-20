@@ -1,0 +1,62 @@
+.filter{
+    text-align: center;
+    width: 90%;
+    padding-bottom: 50px;
+}
+.wraper{
+    text-align: -webkit-center;
+}
+.filter h1{
+    margin: 20px 0px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+.filterinput{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin: 15px 0px;
+    justify-content: center;
+}
+.filterinput input{
+    color: brown;
+    border: solid 1px rgb(76, 76, 76);
+    border-radius: 10px;
+    margin-left: 5px;
+    width: 50px;
+}
+.chartcomponent{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.allchart{
+    border: solid 1px rgb(180, 180, 180);
+    border-radius: 20px;
+    padding: 10px;
+    text-align: -webkit-center;
+}
+.linechart{
+    width: -webkit-fill-available;
+    height: 300px;
+}
+.Barchart{
+    width: 60%;
+    height: 300px;
+}
+.Piechart{
+    width: 25%;
+    height: 300px;
+}
+@media (max-width: 1109px) {
+    .Barchart{
+        width: -webkit-fill-available;
+    }
+    .Piechart{
+        width: -webkit-fill-available;
+        height: 300px;
+    }
+    
+}
+
+
