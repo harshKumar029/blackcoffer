@@ -46,7 +46,7 @@ const Linechart = ({ data }) => {
 const options = {
   scales: {
     x: {
-      display: true,
+      display: false,
     },
     y: {
       beginAtZero: true,
