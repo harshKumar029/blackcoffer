@@ -25,6 +25,7 @@ function Home() {
         'content-Type': 'application/json'
       }
     });
+    
 
     response = await response.json();
     console.log("datacondsgerwgrwg", response[0])
