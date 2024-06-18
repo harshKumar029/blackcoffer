@@ -24,7 +24,6 @@ function Home() {
       header: {
         'content-Type': 'application/json'
       }
-
     });
 
     response = await response.json();
